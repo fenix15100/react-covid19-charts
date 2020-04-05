@@ -5,13 +5,13 @@ const url = 'https://covid19.mathdro.id/api';
 export const fetchData = async (country) => {
   let dinamycUrl = url;
 
-  if (country) {
+  if (country!=='Global') {
     dinamycUrl = `${url}/countries/${country}`;
   }
 
   try {
     const response = await axios.get(dinamycUrl);
-
+    console.log(response.data)
     return response.data;
   } catch (error) {
     return error;
