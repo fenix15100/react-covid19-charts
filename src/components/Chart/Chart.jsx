@@ -3,7 +3,7 @@ import styles from './Chart.module.css';
 
 const Chart = () => {
     return (
-        <h1>feka</h1>
+        <h1>Chart here</h1>
     );
 }
 

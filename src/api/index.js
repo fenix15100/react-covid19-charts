@@ -17,3 +17,12 @@ export const fetchData = async (country) => {
     return error;
   }
 };
+
+export const fetchCountries = async () => {
+  try {
+    const response = await axios.get(`${url}/countries`);
+    return response.data.countries.map((country) => country.name);
+  } catch (error) {
+    return error;
+  }
+};
