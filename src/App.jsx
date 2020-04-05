@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import styles from './App.module.css';
 import image from './assets/header.png';
 import {fetchData} from './api';
@@ -7,14 +7,14 @@ import {Cards,Chart,CountryBar} from './components';
 const App = () =>{
 
   const [country,setCountry] = useState('Global');
-  const [dataCard,setDataCard] = useState({});
-  const [loadingCards,setLoadingCards] = useState(true);
+  const [data,setData] = useState({});
+  const [loading,setIsLoading] = useState(true);
 
   useEffect(()=>{
     async function loadData() {
-      const data = await fetchData(country);
-      setDataCard(data);
-      setLoadingCards(false)
+      const dataCards = await fetchData(country);
+      setData(dataCards);
+      setIsLoading(false)
     }
     loadData();
 
@@ -23,20 +23,28 @@ const App = () =>{
   return (
     <div className={styles.container}>
       <img className={styles.image} src={image} alt="COVID-19"/>
-      {loadingCards
+      {loading
         ?
         <h1>Loading data....</h1>
         :
-        <Cards
-          dataCard={dataCard}
-        />
+        (
+          <Fragment>
+            <Cards
+              data={data}
+            />
+            <CountryBar
+              setCountry={setCountry}
+            />
+            <Chart
+              dataset={data}
+              country={country}
+            />
+          </Fragment>
+       )
       
       }
       
-      <CountryBar
-        setCountry={setCountry}
-      />
-      <Chart/>
+      
       
     </div>
   );

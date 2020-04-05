@@ -11,7 +11,6 @@ export const fetchData = async (country) => {
 
   try {
     const response = await axios.get(dinamycUrl);
-    console.log(response.data)
     return response.data;
   } catch (error) {
     return error;
@@ -22,6 +21,16 @@ export const fetchCountries = async () => {
   try {
     const response = await axios.get(`${url}/countries`);
     return response.data.countries.map((country) => country.name);
+  } catch (error) {
+    return error;
+  }
+};
+
+export const fetchDailyData = async () => {
+  try {
+    const { data } = await axios.get(`${url}/daily`);
+
+    return data.map(({ confirmed, deaths, reportDate: date }) => ({ confirmed: confirmed.total, deaths: deaths.total, date }));
   } catch (error) {
     return error;
   }
