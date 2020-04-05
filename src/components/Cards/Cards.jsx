@@ -52,7 +52,7 @@ const Cards = ({data}) => {
                 </Card.Body>
             </Card>
 
-            <Card className={cx(styles.card,styles.infected)}>
+            <Card className={cx(styles.card,styles.deaths)}>
                 <Card.Body>
                     <Card.Title>Deaths</Card.Title>
                     <h2>
