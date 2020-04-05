@@ -29,12 +29,14 @@ const App = () =>{
         :
         (
           <Fragment>
+             <br></br>
+             <CountryBar
+              setCountry={setCountry}
+            />
             <Cards
               data={data}
             />
-            <CountryBar
-              setCountry={setCountry}
-            />
+           
             <Chart
               dataset={data}
               country={country}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Line, Bar } from 'react-chartjs-2';
+import { Line, HorizontalBar } from 'react-chartjs-2';
 import {fetchDailyData} from './../../api'
 import styles from './Chart.module.css';
 
@@ -17,13 +17,13 @@ const Chart = ({dataset,country}) => {
     const barChart = (
 
         dataset.confirmed ? 
-            <Bar
+            <HorizontalBar
               data={{
                 labels: ['Infected', 'Recovered', 'Deaths'],
                 datasets: [
                   {
                     label: 'People',
-                    backgroundColor: ['rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(255, 0, 0, 0.5)'],
+                    backgroundColor: ['rgba(164, 17, 184, 0.5)', 'rgba(39, 145, 13, 0.5)', 'rgba(255, 0, 0, 0.5)'],
                     data: [dataset.confirmed.value, dataset.recovered.value, dataset.deaths.value],
                   },
                 ],
@@ -44,12 +44,12 @@ const Chart = ({dataset,country}) => {
               datasets: [{
                 data: dailyData.map((data) => data.confirmed),
                 label: 'Infected',
-                borderColor: '#3333ff',
+                borderColor: '#a411b880',
                 fill: true,
               }, {
                 data: dailyData.map((data) => data.deaths),
                 label: 'Deaths',
-                borderColor: 'red',
+                borderColor: '#ff000080',
                 backgroundColor: 'rgba(255, 0, 0, 0.5)',
                 fill: true,
               },
